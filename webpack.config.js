@@ -2,9 +2,10 @@ const path = require("path");
 const myLoader = require("./myLoader");
 const webpack = require("webpack");
 const childProcess = require("child_process"); // 터미널 명령어를 웹팩에서 사용하기 위한 모듈
+const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: {
     main: path.resolve("./src/app.js"),
   },
@@ -46,7 +47,12 @@ module.exports = {
             `,
     }),
     new webpack.DefinePlugin({
+      // 전역상수를 플러그인으로 사용가능
       pw: 123456,
+    }),
+    new htmlWebpackPlugin({
+      // 해당 파일도 번들링을 해주는 플러그인
+      template: "./src/index.html",
     }),
   ],
 };
