@@ -53,6 +53,13 @@ module.exports = {
     new htmlWebpackPlugin({
       // 해당 파일도 번들링을 해주는 플러그인
       template: "./src/index.html",
+      minify:
+        process.env.NODE_ENV === "production"
+          ? {
+              collapseWhitespace: true, // 공백 제거
+              removeComments: true, // 주석 제거
+            }
+          : false,
     }),
   ],
 };
