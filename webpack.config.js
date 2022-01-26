@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const childProcess = require("child_process"); // 터미널 명령어를 웹팩에서 사용하기 위한 모듈
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     main: path.resolve("./src/app.js"),
   },
@@ -44,6 +44,9 @@ module.exports = {
                 committer : ${childProcess.execSync("git config user.name")}
                 last build : ${new Date().toLocaleString()}
             `,
+    }),
+    new webpack.DefinePlugin({
+      pw: 123456,
     }),
   ],
 };
